@@ -1,0 +1,22 @@
+<div class="buttonBar row">
+    <div class="col-md-5 btn-group">
+    <%=link_to "Recent Post", root_path, class:"btn btn-light"%>
+    <%= submit_tag("Selected Post", id: "submit", form: "filter", class: "btn btn-light") %>
+    <% if logged_in? %>
+        <%=link_to "My Setting", user_settings_path(current_user.id) , class:"btn btn-light"%>  
+    <% end %>
+    </div>
+    <div class="col-md-4 col-md-offset-1">
+    <%= form_tag(search_post_path, :method => "get", class: 'search navbar-form navbar-left') do %>  
+        <div class="input-group">  
+        <%= search_field_tag :search, params[:search], placeholder: "Search", class: "searchInput form-control" %>  
+        <div class="input-group-btn">  
+            <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
+        </div>  
+        </div>  
+    <% end %>
+    </div>
+    <div class="newPostBtn col-md-1">
+    <%= link_to "Create Post", new_post_path, class:"new_post btn btn-primary"%>
+    </div>
+</div>

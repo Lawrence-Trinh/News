@@ -1,0 +1,32 @@
+<% content_for :title, @user.name %>
+<div class="viewProfile container">
+    <%= render 'users/sidenav' %>
+    <div class="col-md-9">
+        <div class="myPostsCommentsBG">
+            <h1>Comments To Me</h1>
+            <% @posts.each do |post| %>
+                <% @comments.each do |comment| %>
+                    <% if comment.comment != "[Removed]" %>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="myPostCommentInfo commentInfo">
+                                    <span class="glyphicon glyphicon-time"></span> 
+                                    <%= comment.created_at.strftime("%d-%m-%Y %H:%M:%S") %> 
+                                    <% if comment.commentable_type == "Post"%>
+                                        <%= link_to comment.user.name, comment.user %> commented on your post
+                                        <%= link_to comment.post.title, comment.post %>
+                                    <% else %>
+                                        <%= link_to comment.user.name, comment.user %> replied to your comment on  
+                                        <%= link_to comment.post.title, comment.post %>
+                                    <% end %>
+                                </p>
+                                <p><%= comment.comment %></p>
+                            </div>
+                        </div>
+                        <hr>
+                    <% end %>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="tab container">
+    <%= form_for @user, url: update_user_avatar_path(@user), method: :patch do |f| %>
+        <div class="userAvatar">
+            <%= image_tag(@user.avatar.url, class: "settingsUserAvatar", alt: 'Avatar') %>
+            <p><i>No larger than 2mb</i></p>
+            <div class="uploadImage btn fileinput-button">
+                <span class="glyphicon glyphicon-cloud-upload"></span><span>Upload</span>
+                <%= f.file_field :avatar, class: "uploadAvatar", :required => true, accept:'image/x-png,image/jpg,image/jpeg' %>
+                <%  %>
+            </div>
+            <%= f.submit "Confirm", class: 'userSettings btn btn-light' %>
+        </div>
+    <% end %>
+    </div>

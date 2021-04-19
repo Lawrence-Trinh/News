@@ -1,0 +1,14 @@
+<% provide(:title, "Forgot Password") %> 
+<div class="container forgotPassword">
+  <h1>Forgot Password</h1>
+  <%= form_tag password_resets_path, :method => :post do %>
+    <h4> Please enter your email address</h4>
+    <div class="forgotPassword input-group mb-3">
+      <div class="input-group-addon">
+        <span class="input-group-text" id="basic-addon1">Email</span>
+      </div>
+      <%= email_field :email, params[:email], class: 'form-control', placeholder: "Enter your email", :required => true %>
+    </div>
+      <%= submit_tag "Reset Password", class: "btn btn-primary" %>
+  <% end %>
+</div>

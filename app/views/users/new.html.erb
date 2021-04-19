@@ -1,0 +1,39 @@
+<% provide(:title, 'Sign Up') %>
+<div class="container signup">
+  <h1>SIGNUP</h1>
+  <%= form_for(@user, url: signup_path) do |f| %>
+    <%= render 'shared/error_messages' %>
+    <div class="signup input-group mb-3">
+      <div class="input-group-addon">
+        <span class="input-group-text" id="basic-addon1">Name</span>
+      </div>
+      <%= f.text_field :name, class: 'form-control', placeholder: "Enter your name", :required => true %>
+    </div>
+    <div class="signup input-group mb-3">
+      <div class="input-group-addon">
+        <span class="input-group-text" id="basic-addon1">Email</span>
+      </div>
+      <%= f.email_field :email, class: 'form-control', placeholder: "Enter your email", :required => true %>
+    </div>
+    <div class="signup input-group mb-3">
+      <div class="input-group-addon">
+        <span class="input-group-text" id="basic-addon1">Password</span>
+      </div>
+      <%= f.password_field :password, class: 'form-control', placeholder: "Enter your password", :required => true %>
+    </div>
+    <div class="signup input-group mb-3">
+      <div class="input-group-addon">
+        <span class="input-group-text" id="basic-addon1">Confirm Password</span>
+      </div>
+      <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "Confirm your password", :required => true %>
+    </div>
+    <div class="signup input-group mb-3">
+      <div class="input-group-addon">
+        <span class="input-group-text" id="basic-addon1">Mobile</span>
+      </div>
+      <%= f.number_field :mobile, class: 'form-control', placeholder: "Enter your mobile", :required => true %>
+    </div>
+    <%= f.submit "Create My Account", class: "btn btn-primary" %>
+  <% end %>
+  <p><%= link_to "Already have an account?", login_path %></p> 
+</div>

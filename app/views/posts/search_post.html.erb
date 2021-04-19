@@ -1,0 +1,16 @@
+<% content_for :title, "Search Posts" %>
+<div class="searchPost row">
+  <div class="col-md-9"> 
+    <%= render "buttonbar" %>
+    <% @search.each do |post| %>
+      <% if post.title != "[Removed]" %>
+        <%= render "posts", :post => post %>
+      <% end %>
+    <% end %>
+  </div>
+  <%= form_tag(search_tag_page_path, method: "get", name: "filter", id: "filter", class: "form-inline") do %>
+    <div class="sideNav col-md-3">
+      <%= render "side_navbar" %>
+    </div>
+  <% end %>
+</div>

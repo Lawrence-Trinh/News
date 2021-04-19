@@ -1,0 +1,9 @@
+<div class="profileSideNavCol col-md-3 no-float">
+    <div class="sidenav-profile">
+        <h4><%= link_to current_user do %><span class="glyphicon glyphicon-send"></span>My Profile<% end %></h4>
+        <h4><%= link_to show_posts_path do %><span class="glyphicon glyphicon-user"></span>My Posts<% end %></h4>
+        <h4><%= link_to show_comments_path do %><span class="glyphicon glyphicon-comment"></span>My Comments<% end %></h4>
+        <h4><%= link_to show_mentions_path do %><span class="glyphicon glyphicon-ok-sign"></span>Comments To Me<% end %></h4>
+        <h4><%= link_to user_settings_path do %><span class="glyphicon glyphicon-cog"></span>Settings<% end %></h4>
+    </div>
+</div>

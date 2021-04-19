@@ -1,0 +1,35 @@
+I"Î(function() {
+  $(document).on("click", "#bold", function() {
+    var div, textArea;
+    div = $(this).closest('div');
+    textArea = div.next('textarea');
+    return textArea.val(textArea.val() + '<b></b>');
+  });
+
+  $(document).on("click", "#underline", function() {
+    var div, textArea;
+    div = $(this).closest('div');
+    textArea = div.next('textarea');
+    return textArea.val(textArea.val() + '<ins></ins>');
+  });
+
+  $(document).on("click", "#italic", function() {
+    var div, textArea;
+    div = $(this).closest('div');
+    textArea = div.next('textarea');
+    return textArea.val(textArea.val() + '<i></i>');
+  });
+
+  $(document).on("turbolinks:load", function() {
+    return $('form.new_comment').hide();
+  });
+
+  $(document).on("click", "button.replyPost", function() {
+    var div;
+    div = $(this).closest('div');
+    $('.new_comment').not(div.next('.new_comment')).hide();
+    return div.next('form.new_comment').slideToggle(100);
+  });
+
+}).call(this);
+:ET

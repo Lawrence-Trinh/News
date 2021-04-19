@@ -1,0 +1,81 @@
+// Place all the styles related to the Sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* ========== Login (new.html.erb) ========== */
+.container.login {
+    background-color: white;
+    width: 50%;
+    padding: 50px 100px;
+    margin-bottom: 50px;
+}
+
+.container.login>h1 {
+    margin-bottom: 100px;
+}
+
+.container.login>p {
+    float: right;
+}
+
+.login.input-group.mb-3 {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.login.input-group.mb-3>.input-group-addon {
+    width: 120px;
+}
+
+.login.input-group.mb-3>.input-group-addon,
+.login.input-group.mb-3>input {
+    border-radius: 0;
+}
+
+.container.login>form>.row {
+    margin: 0 0 10px 0;
+}
+
+.container.login>form>.row>.checkbox.inline,
+.container.login>form>.row>p {
+    display: inline;
+}
+
+.container.login>form>.row>p {
+    float: right;
+}
+
+.container.login>form>input {
+    background-color: #0e9587;
+    color: white;
+    border: 0;
+    height: 40px;
+    width: 100%;
+    line-height: 2;
+    margin-bottom: 20px;
+}
+
+.container.login>form>input:hover,
+.container.login>form>input:active,
+.container.login>form>input:focus {
+    box-shadow: none;
+    outline: 0;
+    text-decoration: none;
+    background-color: #0d8176;
+}
+
+.container.login>form>.row>p>a,
+.container.login>p>a {
+    color: #FF4500;
+}
+
+.container.login>form>.row>p>a:hover,
+.container.login>form>.row>p>a:active,
+.container.login>form>.row>p>a:focus,
+.container.login>p>a:hover,
+.container.login>p>a:active,
+.container.login>p>a:focus {
+    color: #FF0500;
+    text-decoration: none;
+    font-weight: bold;
+}

@@ -1,0 +1,48 @@
+<%# Recent Members %>
+  <div class="sideNavTitleContainer">
+    <h4 class="sideNavTitle">Recent Members</h4>
+  </div>
+<div class="sideNav container">
+  <% @recent_members.each do |user| %>
+    <div class="recentUserAvatarCol col-md-3">
+      <%= image_tag(user.avatar.url, class: "recentUserAvatar", alt: 'Avatar') %>  
+      <p class="recentUserName"> <%= link_to user.name.partition(" ").first, user %></p>
+    </div>
+  <% end %>
+</div>
+<%# Topic %>
+  <div class="sideNavTitleContainer">
+    <h4 class="sideNavTitle">Topic</h4>
+  </div>
+<div class="sideNav container">
+    <% Tag.all.each do |tag| %>
+    <div class="btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-primary">
+            <%= check_box_tag('search_tag[]', tag.id)%> <%= tag.name %>
+        </label>
+    </div>
+    <% end %>
+</div>
+  <div class="sideNavTitleContainer">
+    <h4 class="sideNavTitle">Post</h4>
+  </div>
+<%# Top Five Viewed Post %>
+<div class="sideNav container">
+  <% @top_five_posts.each do |post| %>
+    <div class="post col-md-10">
+      <p class="topFivePostTitle"><%= link_to post.title, post %></p>
+    </div>
+    <div class="post col-md-2">
+      <p><span class="glyphicon glyphicon-eye-open"></span> <%= post.view_counter %></p>
+    </div>
+  <% end %>
+</div>
+<%# Links %>
+  <div class="sideNavTitleContainer">
+    <h4 class="sideNavTitle">Links</h4>
+  </div>
+<div class="sideNav container">
+  <%= link_to 'RMIT', "https://rmit.edu.au", class: 'btn btn-primary' %>
+  <%= link_to 'GitHub', "https://github.com/Lawrence-Trinh/RAD2020_s3656432_s3689472", class: 'btn btn-primary' %>
+  <%= link_to 'Rails', "https://rubyonrails.org", class: 'btn btn-primary' %>
+</div>

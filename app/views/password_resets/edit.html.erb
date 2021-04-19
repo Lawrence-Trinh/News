@@ -1,0 +1,31 @@
+<% provide(:title, "Reset Password") %> 
+<div class="container resetPassword">
+  <h1>Reset Password</h1>
+  <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+    <% if @user.errors.any? %>
+      <div class="errorNoticeResetPW">
+        <div class="errorNotice">
+          <p>Failed to reset password</p>
+        </div>
+        <ul>
+          <% for message in @user.errors.full_messages %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="resetPassword input-group mb-3">
+      <div class="input-group-addon">
+        <span class="input-group-text" id="basic-addon1">Password</span>
+      </div>
+      <%= f.password_field :password, class: 'form-control', placeholder: "Enter your password", :required => true %> 
+    </div>
+    <div class="resetPassword input-group mb-3">
+      <div class="input-group-addon">
+        <span class="input-group-text" id="basic-addon1">Confirm Password</span>
+      </div>
+      <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "Confirm your password", :required => true %> 
+    </div>
+    <%= f.submit "Update Password", class: "btn btn-primary" %>
+  <% end %>
+</div>

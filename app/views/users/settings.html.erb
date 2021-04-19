@@ -1,0 +1,28 @@
+<% content_for :title, @user.name%>
+<div class="viewProfile container">
+    <%= render 'users/sidenav' %>
+    <div class="settingsCol col-md-9">
+        <div class="settings container">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#personalInfo"><h4>Personal Info</h4></a></li>
+                <li><a data-toggle="tab" href="#avatar"><h4>Avatar</h4></a></li>
+                <li><a data-toggle="tab" href="#password"><h4>Password</h4></a></li>
+                <li><a data-toggle="tab" href="#verification"><h4>Verification</h4></a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="personalInfo" class="tab-pane fade in active">
+                    <%= render "users/personalInfo"%>
+                </div>
+                <div id="avatar" class="tab-pane fade">
+                    <%= render "users/avatar"%>
+                </div>
+                <div id="password" class="tab-pane fade">
+                    <%= render "users/password"%>
+                </div>
+                <div id="verification" class="tab-pane fade">
+                    <%= render "users/verification"%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

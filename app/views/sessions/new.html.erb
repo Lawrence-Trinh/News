@@ -1,0 +1,27 @@
+<% provide(:title, "Log In") %> 
+<div class="container login">
+  <h1>LOGIN</h1>
+  <%= form_for(:session, url: login_path) do |f| %> 
+    <div class="login input-group mb-3">
+      <div class="input-group-addon">
+        <span class="input-group-text" id="basic-addon1">Email</span>
+      </div>
+      <%= f.email_field :email, class: 'form-control', placeholder: "Enter your email", :required => true %> 
+    </div>
+    <div class="login input-group mb-3">
+      <div class="input-group-addon">
+        <span class="input-group-text" id="basic-addon1">Password</span>
+      </div>
+      <%= f.password_field :password, class: 'form-control', placeholder: "Enter your password", :required => true %> 
+    </div>
+    <div class="row">
+      <%= f.label :remember_me, class: "checkbox inline" do %> 
+        <%= f.check_box :remember_me %>
+        <span>Remember Me</span>
+      <% end %>
+      <p><%= link_to 'Forgot Password?', new_password_reset_path%></p>
+    </div>
+    <%= f.submit "Login", class: "btn btn-primary" %>
+  <% end %>
+  <p>Don't have an account? <%= link_to "Register Now!", signup_path %></p> 
+</div>

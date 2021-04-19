@@ -1,0 +1,33 @@
+<div class="formPost container"> 
+  <%= form_for @post do |f| %> 
+    <div class="topic input-group mb-3">
+      <div class="topic input-group-addon">
+          <span class="input-group-text" id="basic-addon1">Topic</span>
+      </div>
+        <%= select_tag(:tag_id, options_for_select(@tags), {:class => 'form-control'}) %>
+    </div>
+    
+    <div class="title input-group mb-3">
+      <div class="title input-group-addon">
+          <span class="input-group-text" id="basic-addon1">Title</span>
+      </div>
+      <%= f.text_field :title, class: 'title form-control', :required => true %>  
+    </div>
+
+    <div class="btn-group" role="group" id="text-format">
+        <button type="button" class="btn btn-sm btn-info" id="bold">
+            <span class="glyphicon glyphicon-bold"></span>
+        </button>
+        <button type="button" class="btn btn-sm btn-info" id="underline">
+            <span><ins>U</ins></span>
+        </button>
+        <button type="button" class="btn btn-sm btn-info" id="italic">
+            <span class="glyphicon glyphicon-italic"></span>
+        </button>
+    </div>
+    <%= f.text_area :content, class: 'form-control textarea', rows: '20', placeholder: 'Enter your post here!', :required => true %> 
+
+    <%= f.submit "Post", class:"createPostBtn btn btn-primary"%>
+    <%= link_to "Cancel", @post, class: "cancelPostBtn btn btn-primary" %>
+  <% end %>
+</div>

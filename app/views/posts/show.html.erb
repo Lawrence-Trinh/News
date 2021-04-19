@@ -1,0 +1,75 @@
+<% content_for :title, @post.title %>
+<div class="show row">
+  <div class="showPost container col-md-9">
+    <div class="showPostBG">
+      <div class="row">
+        <% if owner?(@post) && @post.title != "[Removed]" %>
+          <div class="showPostOwner">
+            <%= link_to "Edit", edit_post_path(@post), class: 'editPostBtn btn btn-primary'  %>
+            <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure you want to do this ?" }, class: 'deletePostBtn btn btn-primary'  %>
+          </div>
+        <% end %>
+        <h1 class="showPostTitle"><%= @post.title %></h1>
+        <div class="row">
+          <div class="showPostTagCol col-md-3">
+            <p class="showPostTag"><%= link_to @post.tag.name, @post.tag %></p>
+          </div>
+          <div class="showPostCounterCol col-md-auto">
+            <p class="showPostCounter comment"> <span class="glyphicon glyphicon-comment"></span> <%= Comment.where(post_id: @post.id).count %></p>
+            <p class="showPostCounter views"> <span class="glyphicon glyphicon-eye-open"></span> <%= @post.view_counter %></p>
+          </div>
+        </div>
+        <div class="showPostInfoContainer">       
+          <div class="showPostInfoCol col-md-1">
+            <% if @post.title != "[Removed]" %>
+              <%= image_tag(@post.user.avatar.url, class: "showPostUserAvatar", alt: 'Avatar') %> 
+            <% else %>
+              <%= image_tag("DefaultAvatar.png", class: "showPostUserAvatar", alt: 'Avatar') %> 
+            <% end %>
+          </div>       
+          <div class="showPostInfoCol col-md-10">
+            <% if @post.title != "[Removed]" %>
+              <p class="showPostInfoUser"> <%= link_to @post.user.name, @post.user %></p>
+            <% else %>
+              <p class="showPostInfoUser">[Removed]</p>
+            <% end%>
+            <p class="showPostInfoDate"> <%= @post.created_at.strftime("%d-%m-%Y %H:%M:%S")%></p>
+          </div>
+        </div>
+        <%= simple_format(@post.content) %>
+      </div>
+
+        <div class="comment row"> 
+          <h3 class="showPostCommentTitle">Comment</h3>
+          <div class="showPostCommentForm">
+            <%= form_for [@post, Comment.new], :html => {:class => 'newComment',} do |f| %>
+              <div class="btn-group" role="group" id="text-format">
+                  <button type="button" class="btn btn-sm btn-info" id="bold">
+                      <span class="glyphicon glyphicon-bold"></span>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-info" id="underline">
+                      <span><ins>U</ins></span>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-info" id="italic">
+                      <span class="glyphicon glyphicon-italic"></span>
+                  </button>
+              </div>
+              <%= f.text_area :comment, class: 'form-control textarea', rows: '10', placeholder: "Add a comment", rows: 5, :required => true %>
+              <%= f.submit "Post Comment", class: "showPostNewCommentBtn btn btn-primary" %>
+            <% end %>
+          </div>
+          <div class="showPostTotalComments">
+            <% if Comment.where(post_id: @post.id).count == 1 %>
+              <h3><%= Comment.where(post_id: @post.id).count %> Comment</h3>
+            <% else %>
+              <h3><%= Comment.where(post_id: @post.id).count %> Comments</h3>
+            <% end %>
+          </div>
+      </div>
+        <%= render @post.comments %>
+      </div>
+    </div>
+  <div class="sideNav col-md-3">
+    <%= render "side_navbar" %>
+  </div>
+</div>

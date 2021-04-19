@@ -1,0 +1,586 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* mixins, variables, etc. */
+$gray-medium-light: #eaeaea;
+
+/* ========== Post Index Page (index.html.erb) ========== */
+.index.row {
+  margin-bottom: 50px;
+}
+
+.sideNav.col-md-3 {
+  padding-left: 0;
+}
+
+// Button Row Styling (_buttonbar.html.erb)
+.buttonBar.row {
+  height: auto;
+  margin-bottom: 30px;
+}
+
+.btn.btn-light {
+  background-color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 40px;
+  width: 130px;
+  border-color: $gray-medium-light;
+  margin-right: 3px;
+  line-height: 2;
+  color: $gray;
+}
+
+.btn.btn-light:hover,
+.btn.btn-light:active,
+.btn.btn-light:focus {
+  box-shadow: none;
+  outline: 0;
+  text-decoration: none;
+  color: #ff4500;
+  background-color: white;
+}
+
+.search.navbar-form.navbar-left {
+  margin: 0;
+}
+
+.search.navbar-form.navbar-left > .input-group {
+  width: 300px;
+}
+
+.searchInput.form-control {
+  height: 40px;
+  border-color: $gray-medium-light;
+  border-right: none;
+  box-shadow: none;
+}
+
+.btn.btn-info.glyphicon.glyphicon-search {
+  height: 40px;
+  top: 0;
+  background-color: white;
+  color: #a9a9a9;
+  border-color: $gray-medium-light;
+  border-left: none;
+}
+
+.newPostBtn {
+  width: auto;
+  float: right;
+}
+
+.newPostBtn > a {
+  background-color: #0e9587;
+  color: white;
+  border: 0;
+  height: 40px;
+  line-height: 2;
+}
+
+.newPostBtn > a:hover,
+.newPostBtn > a:active,
+.newPostBtn > a:focus {
+  box-shadow: none;
+  outline: 0;
+  text-decoration: none;
+  background-color: #0d8176;
+}
+
+// Post Styling (_posts.html.erb)
+.postContainer {
+  height: 104px;
+  background-color: white;
+  margin-top: 5px;
+}
+
+.postUserAvatar {
+  float: left;
+  height: 64px;
+  width: 64px;
+  margin: 20px;
+}
+
+.postTitle {
+  padding-top: 30px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.postTitle > a {
+  color: #333333;
+}
+
+.postInfo > a {
+  color: $gray;
+}
+
+.postTitle > a:hover,
+.postTitle > a:active,
+.postTitle > a:focus,
+.postInfo > a:hover,
+.postInfo > a:active,
+.postInfo > a:focus {
+  color: #ff4500;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.postImageContainer {
+  width: 10%;
+  padding: 0;
+}
+
+.postInfoContainer {
+  width: 90%;
+  padding: 0px;
+  height: 100%;
+}
+
+.post.row {
+  margin: 0;
+  padding: 0;
+}
+
+.info.post.row {
+  padding-top: 10px;
+}
+
+.postInfo {
+  display: inline;
+  margin-right: 25px;
+  color: $gray;
+}
+
+.counter.post.row {
+  padding-right: 15px;
+  text-align: right;
+  color: $gray;
+}
+
+.postCounter {
+  display: inline;
+  font-size: 18px;
+}
+
+.postCounter.views {
+  padding-left: 15px;
+}
+
+// Side Navbar (_side_navbar.html.erb)
+.sideNavTitleContainer {
+  padding: 20px 0;
+  background-color: white;
+}
+
+.sideNavTitle {
+  border-left: 5px solid #ff4500;
+  margin: 0;
+  padding-left: 30px;
+  height: 30px;
+  line-height: 1.6;
+}
+
+.sideNav.container {
+  background-color: white;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  width: auto;
+}
+
+// Recent Members
+.recentUserAvatarCol {
+  padding: 0;
+  text-align: center;
+}
+
+.recentUserAvatar {
+  height: 64px;
+  width: 64px;
+}
+
+.recentUserName {
+  margin-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recentUserName > a {
+  color: $gray;
+}
+
+.recentUserName > a:hover,
+.recentUserName > a:active,
+.recentUserName > a:focus {
+  color: #ff4500;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+// Side Nav (Top Five Posts)
+.post.col-md-10 {
+  padding: 0;
+}
+
+.post.col-md-2 {
+  padding-right: 0;
+  text-align: right;
+}
+
+.topFivePostTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topFivePostTitle > a {
+  color: $gray;
+}
+
+.topFivePostTitle > a:hover,
+.topFivePostTitle > a:active,
+.topFivePostTitle > a:focus {
+  color: #ff4500;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+// Buttons (Topic/Links)
+.btn-group-toggle {
+  display: inline;
+}
+
+.sideNav.container .btn.btn-primary,
+.sideNav.container .btn.btn-primary.focus {
+  background-color: white;
+  border-color: $gray-light;
+  border-radius: 15px;
+  padding: 0 15px 0 15px;
+  margin: 0 10px 10px 0;
+  color: $gray;
+  outline: none;
+}
+
+.sideNav.container .btn.btn-primary:hover,
+.sideNav.container .btn.btn-primary:active,
+.sideNav.container .btn.btn-primary:focus {
+  color: #ff4500;
+  border-color: #ff4500;
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+}
+
+.sideNav.container .btn.btn-primary.active,
+.sideNav.container .btn.btn-primary.active.focus {
+  color: #ff4500;
+  border-color: #ff4500;
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+}
+
+/* ========== New and Edit Post (new.html.erb and edit.html.erb) ========== */
+.newEditPost.container {
+  padding: 20px 0;
+  background-color: white;
+  width: 70%;
+  margin-bottom: 50px;
+}
+
+/* ========== New Post Form (form.html.erb) ========== */
+.formPost.container {
+  width: 80%;
+  padding: 15px;
+}
+
+.topic.input-group-addon,
+.title.input-group-addon {
+  width: 100px;
+}
+
+.title.input-group.mb-3 {
+  margin: 0;
+  width: 100%;
+}
+
+.title.input-group.mb-3 > .title.form-control {
+  width: 100%;
+}
+
+.new_post > .topic.input-group.mb-3,
+.new_post > .title.input-group.mb-3,
+.edit_post > .topic.input-group.mb-3,
+.edit_post > .title.input-group.mb-3 {
+  margin-bottom: 20px;
+}
+
+.form-control.textarea {
+  margin-bottom: 50px;
+}
+
+.createPostBtn.btn.btn-primary {
+  background-color: #0e9587;
+  color: white;
+  border: 0;
+  height: 40px;
+  width: 100px;
+  line-height: 2;
+  margin-right: 25px;
+}
+
+.createPostBtn.btn.btn-primary:hover,
+.createPostBtn.btn.btn-primary:active,
+.createPostBtn.btn.btn-primary:focus {
+  box-shadow: none;
+  outline: 0;
+  text-decoration: none;
+  background-color: #0d8176;
+}
+
+.cancelPostBtn.btn.btn-primary {
+  background-color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 40px;
+  width: 100px;
+  border-color: $gray-medium-light;
+  margin-right: 3px;
+  line-height: 2;
+  color: $gray;
+}
+
+.cancelPostBtn.btn.btn-primary:hover,
+.cancelPostBtn.btn.btn-primary:active,
+.cancelPostBtn.btn.btn-primary:focus {
+  box-shadow: none;
+  outline: 0;
+  text-decoration: none;
+  color: #ff4500;
+  background-color: #e9ebee;
+  border-color: $gray-medium-light;
+}
+
+/* ========== Show Post (show.html.erb) ========== */
+.show.row {
+  margin-bottom: 50px;
+}
+
+.showPost.container {
+  padding: 0 15px;
+}
+
+.showPostBG {
+  padding: 0 15px;
+  background-color: white;
+}
+
+.showPostBG > .row,
+.showPostBG > .row > .row {
+  margin: 0;
+}
+
+.showPostOwner {
+  width: 100%;
+  text-align: right;
+  padding-top: 15px;
+}
+
+.editPostBtn {
+  background-color: #0e9587;
+  color: white;
+  border: 0;
+  height: 35px;
+  width: 100px;
+  line-height: 1.5;
+  margin-right: 25px;
+}
+
+.editPostBtn:hover,
+.editPostBtn:active,
+.editPostBtn:focus {
+  box-shadow: none;
+  outline: 0;
+  text-decoration: none;
+  background-color: #0d8176;
+}
+
+.deletePostBtn {
+  background-color: #eb0b0b;
+  color: white;
+  border: 0;
+  height: 35px;
+  width: 100px;
+  line-height: 1.5;
+}
+
+.deletePostBtn:hover,
+.deletePostBtn:active,
+.deletePostBtn:focus {
+  box-shadow: none;
+  outline: 0;
+  text-decoration: none;
+  background-color: #d11a2a;
+}
+
+.showPostTitle {
+  text-align: left;
+  border-left: 5px solid #ff4500;
+  width: 100%;
+  padding-left: 30px;
+  margin-bottom: 20px;
+}
+
+.showPost.container > .row > .row {
+  margin: 0 0 20px 0;
+}
+
+.showPost.container > .row > .row > .col-md-3 {
+  padding: 0;
+}
+
+.showPostTagCol {
+  padding-left: 0;
+}
+
+.showPostTag {
+  margin-bottom: 0;
+}
+
+.showPostTag > a {
+  text-align: left;
+  background-color: $gray;
+  font-size: 18px;
+  font-weight: bold;
+  width: fit-content;
+  color: $gray-medium-light;
+  padding: 8px;
+  line-height: 2;
+}
+
+.showPostTag > a:hover,
+.showPostTag > a:active,
+.showPostTag > a:focus {
+  color: #ff4500;
+  text-decoration: none;
+}
+
+.showPostCounterCol {
+  float: right;
+  height: 38px;
+  line-height: 3.5;
+}
+
+.showPostCounter {
+  display: inline;
+  font-size: 18px;
+}
+
+.showPostCounter.views {
+  padding-left: 15px;
+}
+
+.showPostInfoContainer {
+  height: 120px;
+  background-color: #e9ebee;
+  margin: 20px 0;
+}
+
+.showPostInfoCol.col-md-1 {
+  width: 12%;
+  padding: 0;
+}
+
+.showPostInfoCol.col-md-10 {
+  width: 88%;
+  padding: 0px;
+  height: 100%;
+  line-height: 10;
+}
+
+.showPostInfoUser {
+  margin: 0;
+  font-size: 16px;
+  display: inline;
+}
+
+.showPostInfoUser > a {
+  color: $gray;
+}
+
+.showPostInfoUser > a:hover,
+.showPostInfoUser > a:active,
+.showPostInfoUser > a:focus {
+  color: #ff4500;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.showPostInfoDate {
+  margin: 0;
+  display: inline;
+  padding-left: 15px;
+}
+
+.showPostUserAvatar {
+  float: left;
+  height: 80px;
+  width: 80px;
+  margin: 20px;
+}
+
+.comment.row {
+  margin-bottom: 50px;
+}
+
+.showPostCommentTitle {
+  width: fit-content;
+  border-bottom: 5px solid #ff4500;
+  padding: 10px 20px;
+  margin: 20px 0;
+}
+
+.newComment > .textarea {
+  margin-bottom: 20px;
+  resize: none;
+}
+
+.showPostNewCommentBtn {
+  background-color: #24a0ed;
+  color: #ffffff;
+  border: 0;
+  height: 35px;
+  width: fit-content;
+  line-height: 1.5;
+}
+
+.showPostNewCommentBtn:hover,
+.showPostNewCommentBtn:active,
+.showPostNewCommentBtn:focus {
+  box-shadow: none;
+  outline: 0;
+  text-decoration: none;
+  background-color: #1c80bd;
+}
+
+.showPostTotalComments {
+  float: right;
+}
+
+/* ========== Search Post (search_post.html.erb) ========== */
+.searchPost.row {
+  margin-bottom: 50px;
+}
+
+/* ========== Search Tag (search_tag.html.erb) ========== */
+.searchTag.row {
+  margin-bottom: 50px;
+}

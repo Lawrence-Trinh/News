@@ -1,0 +1,8 @@
+<% content_for :title, @user.name %>
+<% if @user == current_user %>  
+  <%= render 'myprofile' %>
+<% else %>
+  <div class="viewOtherProfile">
+    <%= render 'viewprofile' %>
+  </div>
+<% end %>

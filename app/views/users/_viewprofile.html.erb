@@ -1,0 +1,54 @@
+<div class="viewUserProfile container">
+    <div class="userInfo row">
+        <%= image_tag(@user.avatar.url, class: "profileUserAvatar", alt: 'Avatar') %> 
+        <h3><%= @user.name %></h3>
+        <div class="row">
+            <div class="col-md-6">
+                <p><span class="glyphicon glyphicon-time"></span> <%= @user.created_at.strftime("%d-%m-%Y") %></p>
+            </div>
+            <div class="col-md-6">
+                <p><span class="glyphicon glyphicon-map-marker"></span>
+                <% if @user.city == nil || @user.city == ""%> 
+                    Unknown
+                <% else %>
+                    <%= @user.city %>
+                <% end %>
+                </p>
+            </div>
+        </div>
+    </div>
+    <%= simple_format(@user.personal_bio, class: "userPersonalBio") %>
+    <div class="userPostComment row">
+        <div class="post col-md-6">
+            <div class="postCommentBG">
+                <h4 class="postCommentText"><%= @user.name %>'s Recent Posts</h4>
+                <% @posts.each do |post| %>
+                    <% if post.title != "[Removed]" %>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p class="postCommentText title"><%= link_to post.title, post %></p>
+                            </div>
+                            <div class="col-md-3">
+                                <p class="postCommentText"><%= post.created_at.strftime("%d-%m-%Y") %></p>
+                            </div>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+        <div class="comment col-md-6">
+            <div class="postCommentBG">
+                <h4 class="postCommentText"><%= @user.name %>'s Recent Comments</h4>
+                <% @comments.each do |comment| %>
+                    <% if comment.comment != "[Removed]" %>
+                        <p class="postCommentText"><%= comment.post.created_at.strftime("%d-%m-%Y") %> in <%= link_to comment.post.title, comment.post %> comment:</p>
+                        <%= simple_format(comment.comment, class: "postCommentText") %>
+                        <% if @comments.last != comment %>
+                            <hr>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

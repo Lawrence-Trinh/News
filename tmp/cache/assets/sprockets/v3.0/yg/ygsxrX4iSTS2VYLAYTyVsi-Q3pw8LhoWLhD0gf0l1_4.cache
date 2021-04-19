@@ -1,0 +1,42 @@
+I"ù(function() {
+  $(document).on("click", "#bold", function() {
+    var div, textArea;
+    div = $(this).closest('div');
+    textArea = div.next('textarea');
+    return textArea.val(textArea.val() + '<b></b>');
+  });
+
+  $(document).on("click", "#underline", function() {
+    var div, textArea;
+    div = $(this).closest('div');
+    textArea = div.next('textarea');
+    return textArea.val(textArea.val() + '<ins></ins>');
+  });
+
+  $(document).on("click", "#italic", function() {
+    var div, textArea;
+    div = $(this).closest('div');
+    textArea = div.next('textarea');
+    return textArea.val(textArea.val() + '<i></i>');
+  });
+
+  $(document).on("click", "#strikethrough", function() {
+    var div, textArea;
+    div = $(this).closest('div');
+    textArea = div.next('textarea');
+    return textArea.val(textArea.val() + '<s></s>');
+  });
+
+  $(document).on("turbolinks:load", function() {
+    return $('form.newComment').hide();
+  });
+
+  $(document).on("click", "button.replyPost", function() {
+    var div;
+    div = $(this).closest('div');
+    $('.newComment').not(div.next('.newComment')).hide();
+    return div.next('form.newComment').slideToggle(100);
+  });
+
+}).call(this);
+:ET

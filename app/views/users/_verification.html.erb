@@ -1,0 +1,31 @@
+<div class="tab container">
+    <%= form_for @user, url: update_user_verification_path(@user), method: :patch do |f| %>
+        <div class="verificationInput setting input-group mb-3">
+            <div class="input-group-addon">
+                <span class="input-group-text" id="basic-addon1">Type Of Card</span>
+            </div>
+            <%= f.text_field :typeOfCard, class: 'form-control', :required => true, placeholder: 'Please enter your full name' %> 
+        </div>
+        <div class="verificationInput setting input-group mb-3">
+            <div class="input-group-addon">
+                <span class="input-group-text" id="basic-addon1">Card Number</span>
+            </div>
+            <%= f.text_field :cardNumber, class: 'form-control', :required => true, placeholder: 'Please enter your student number' %> 
+        </div>
+        <div class="userVerification">
+            <% if @user.verification.url != nil %>
+                <%= image_tag(@user.verification.url, class: "settingsUserAvatar", alt: 'Avatar') %>
+            <% end %>
+            <p><i>No larger than 2mb</i></p>
+            <div class="uploadImage btn fileinput-button">
+                <span class="glyphicon glyphicon-cloud-upload"></span><span>Upload</span>
+            <% if @user.verification.url == nil %>
+                <%= f.file_field :verification, class: "uploadVerification", :required => true, accept:'image/x-png,image/jpg,image/jpeg' %>
+            <% else %>
+                <%= f.file_field :verification, class: "uploadVerification", accept:'image/x-png,image/jpg,image/jpeg'  %>
+            <% end %>
+            </div>
+        </div>
+        <%= f.submit "Confirm", class: 'userSettings btn btn-light' %>
+    <% end %>
+</div>

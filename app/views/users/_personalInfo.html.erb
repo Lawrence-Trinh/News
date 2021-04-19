@@ -1,0 +1,38 @@
+<div class="tab container">
+    <%= form_for @user, url: update_user_profile_path(@user), method: :patch do |f| %>
+        <p class="personalInfoInstructions">You can modify your contact details below</p>
+        <div class="personalInfoInput setting input-group mb-3">
+            <div class="input-group-addon">
+                <span class="input-group-text" id="basic-addon1">Username</span>
+            </div>
+            <%= f.text_field :name, class: 'form-control', :required => true%> 
+        </div>
+        <div class="personalInfoInput setting input-group mb-3">
+            <div class="input-group-addon">
+                <span class="input-group-text" id="basic-addon1">Email</span>
+            </div>
+            <%= f.text_field :email, class: 'form-control', :required => true %> 
+        </div>
+        <div class="personalInfoInput setting input-group mb-3">
+            <div class="input-group-addon">
+                <span class="input-group-text" id="basic-addon1">Mobile</span>
+            </div>
+            <%= f.text_field :mobile, class: 'form-control', :required => true %> 
+        </div>
+        <div class="personalInfoInput setting input-group mb-3">
+            <div class="input-group-addon">
+                <span class="input-group-text" id="basic-addon1">City</span>
+            </div>
+            <%= f.text_field :city, class: 'form-control' %> 
+        </div>
+        <div class="personalIntro">
+            <div class="input-group mb-3 textarea">
+                <div class="input-group-addon">
+                    <span class="input-group-text" id="basic-addon1">Personal Introduction</span>
+                </div>
+            </div>
+            <%= f.text_area :personal_bio, class: 'form-control textarea', rows: '10', placeholder: 'Leave your personal bio here!' %> 
+        </div>
+        <%= f.submit "Confirm", class: "userSettings btn btn-light"%>
+    <% end %>
+</div>

@@ -1,0 +1,23 @@
+<% content_for :title, @user.name %>
+<div class="viewProfile container">
+    <%= render 'users/sidenav' %>
+    <div class="col-md-9">
+        <div class="myPostsCommentsBG">
+            <h1>My Comments</h1>
+            <% @comments.each do |comment| %>
+                <div class="row">
+                    <div class="col-md-10">
+                        <p class="myPostCommentInfo commentInfo"><span class="glyphicon glyphicon-time"></span> <%= comment.post.created_at.strftime("%d-%m-%Y %H:%M:%S") %> in <%= link_to comment.post.title, comment.post %> comment:</p>
+                        <%= simple_format(comment.comment) %>
+                    </div>
+                    <div class="col-md-2">
+                        <% if comment.comment != "[Removed]" %>
+                            <%= link_to "Delete", comment_path(comment), method: :delete, data: { confirm: "Are you sure you want to do this ?" }, class: 'deletePostBtn btn btn-primary'  %>
+                        <% end %> 
+                    </div>
+                </div>
+                <hr>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+require 'test_helper'
+
+class UserTest < ActiveSupport::TestCase
+
+  def setup
+    @user = User.new(name: "Example User", email: "example@railstutorial.org", password: "foobar123", password_confirmation: "foobar123", mobile:"1234567890")
+  end
+
+  test "should be valid user" do
+    assert @user.valid?
+  end
+
+  test "name should be present" do
+    @user.name = "     "
+    assert_not @user.valid?
+  end
+
+  test "name should have max of 50 characters" do
+    @user.name = "a" * 51
+    assert_not @user.valid?
+  end
+
+  test "email should be present" do
+    @user.email = "     "
+    assert_not @user.valid?
+  end
+
+  test "email should not be too long" do
+    @user.email = "a" * 244 + "@example.com"
+    assert_not @user.valid?
+  end
+
+  test "email validation should accept valid addresses" do
+    valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
+                         first.last@foo.jp alice+bob@baz.cn]
+    valid_addresses.each do |valid_address|
+      @user.email = valid_address
+      assert @user.valid?, "#{valid_address.inspect} should be valid"
+    end
+  end
+
+  test "email validation should reject invalid addresses" do
+    invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.
+                           foo@bar_baz.com foo@bar+baz.com]
+    invalid_addresses.each do |invalid_address|
+      @user.email = invalid_address
+      assert_not @user.valid?, "#{invalid_address.inspect} should be invalid"
+    end
+  end
+
+  test "email addresses should be unique" do
+    duplicate_user = @user.dup
+    duplicate_user.email = @user.email.upcase
+    @user.save
+    assert_not duplicate_user.valid?
+  end
+
+  test "password should be present (nonblank)" do
+    @user.password = @user.password_confirmation = " " * 8
+    assert_not @user.valid?
+  end
+
+  test "password should have a minimum length of 8" do
+    @user.password = @user.password_confirmation = "a" * 7
+    assert_not @user.valid?
+
+    @user.password = @user.password_confirmation = "a" * 8
+    assert @user.valid?
+  end
+
+  test "password should have a maximum length of 20" do
+    @user.password = @user.password_confirmation = "a" * 21
+    assert_not @user.valid?
+
+    @user.password = @user.password_confirmation = "a" * 20
+    assert @user.valid?
+  end
+
+  test "password and confirm should be the same" do
+    @user.password = "a" * 19
+    @user.password_confirmation = "a" * 20
+    assert_not @user.valid?
+  end
+
+  test "mobile should only be numbers" do
+    @user.mobile = "a" * 10
+    assert_not @user.valid?
+  end
+
+  test "mobile should be present" do
+    @user.mobile = "     "
+    assert_not @user.valid?
+  end
+
+  test "mobile should have minimum of 10" do
+    @user.mobile = "0" * 9
+    assert_not @user.valid?
+
+    @user.mobile = "0" * 10
+    assert @user.valid?
+  end
+
+  test "mobile should have maximum of 13" do
+    @user.mobile = "0" * 14
+    assert_not @user.valid?
+
+    @user.mobile = "0" * 13
+    assert @user.valid?
+  end
+
+  test "authenticated? should return false for a user with nil digest" do
+    assert_not @user.authenticated?('') 
+  end
+end

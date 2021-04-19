@@ -1,0 +1,25 @@
+<% content_for :title, @user.name %>
+<div class="viewProfile container">
+    <%= render 'users/sidenav' %>
+    <div class="col-md-9">
+        <div class="myPostsCommentsBG">
+            <h1>My Posts</h1>
+            <% @posts.each do |post| %>
+                <div class="row">
+                    <div class="col-md-10">
+                        <p class="myPostCommentInfo title"><%= link_to post.title, post %></p>
+                        <p class="myPostCommentInfo dateTime"><span class="glyphicon glyphicon-time"></span> <%= @user.created_at.strftime("%d-%m-%Y %H:%M:%S") %></p>
+                        <p class="myPostCommentInfo commentCount"><span class="glyphicon glyphicon-comment"></span> <%= Comment.where(post_id: post.id).count %></p>
+                        <p class="myPostCommentInfo viewCount"><span class="glyphicon glyphicon-eye-open"></span> <%= post.view_counter %></p>
+                    </div>
+                    <div class="col-md-2">
+                        <% if post.title != "[Removed]" %>
+                            <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure you want to do this ?" }, class: 'deletePostBtn btn btn-primary'  %>
+                        <% end %> 
+                    </div>
+                </div>
+                <hr>
+            <% end %>
+        </div>
+    </div>
+</div>

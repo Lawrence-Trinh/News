@@ -1,0 +1,19 @@
+<div class="postContainer">
+    <div class="postImageContainer col-md-1">
+        <%= image_tag(post.user.avatar.url, class: "postUserAvatar", alt: 'Avatar') %>  
+    </div>
+    <div class="postInfoContainer col-md-10">
+        <div class="title post row">
+            <h4 class="postTitle"> <%= link_to post.title, post %></h4>
+        </div>
+        <div class="info post row">
+            <p class="postInfo"> <%= link_to post.user.name.partition(" ").first, post.user %></p>
+            <p class="postInfo"> <%= post.created_at.strftime("%d-%m-%Y %H:%M:%S")%></p>
+            <p class="postInfo"> <%= link_to Tag.find(post.tag_id).name, post.tag %> </p>
+        </div>
+        <div class="counter post row">
+            <p class="postCounter comment"> <span class="glyphicon glyphicon-comment"></span> <%= Comment.where(post_id: post.id).count %></p>
+            <p class="postCounter views"> <span class="glyphicon glyphicon-eye-open"></span> <%= post.view_counter %></p>
+        </div>
+    </div>
+</div>

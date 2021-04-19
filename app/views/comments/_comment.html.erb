@@ -1,0 +1,50 @@
+<div class="singleComment row">
+    <div class="commentInfoContainer">       
+      <div class="commentInfoCol col-md-1">
+        <% if comment.comment != "[Removed]" %>
+            <%= image_tag(comment.user.avatar.url, class: "commentUserAvatar", alt: 'Avatar') %> 
+        <% else %>
+            <%= image_tag("DefaultAvatar.png", class: "commentUserAvatar", alt: 'Avatar') %> 
+        <% end %>
+      </div>       
+      <div class="commentInfoCol col-md-10">
+        <% if comment.comment != "[Removed]" %>
+            <%= link_to comment.user.name, comment.user, class: 'commentUserName' %>
+        <% else %>
+            <span>[Removed]</span>
+        <% end%>
+        <small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small>
+      </div>
+    </div>
+    <h4 ><%= simple_format(comment.comment) %></h4>
+    <div>
+        <% if comment.comment != "[Removed]" %>
+            <p><span class="replyCommentIcon glyphicon glyphicon-comment"></span><button type="button" class="replyPost">Reply</button>
+        <% end %>
+        <% if owner?(comment) %>
+                <% if comment.comment != "[Removed]" %>
+                    <%= link_to "Delete", comment_path(comment), method: :delete, data: { confirm: "Are you sure you want to do this ?" }, class: 'deleteComment'  %>
+                <% end %>
+        <% end %>
+        </p>
+    </div>
+    <%= form_for [comment, Comment.new] do |f| %>
+        <% reply = Comment.where(id: comment.commentable_id) %>
+        <div class="btn-group" role="group" id="text-format">
+            <button type="button" class="btn btn-sm btn-info" id="bold">
+                <span class="glyphicon glyphicon-bold"></span>
+            </button>
+            <button type="button" class="btn btn-sm btn-info" id="underline">
+                <span><ins>U</ins></span>
+            </button>
+            <button type="button" class="btn btn-sm btn-info" id="italic">
+                <span class="glyphicon glyphicon-italic"></span>
+            </button>
+        </div>
+        <%= f.text_area :comment, class: 'form-control comment textarea', rows: '3', placeholder: "Add a Reply", :required => true %> 
+        <%= f.submit "Reply", class: "replyPostCommentBtn btn btn-primary"%>
+    <% end %>
+    <ul class="nestedComments">
+        <%= render comment.comments %>
+    </ul>
+</div>
